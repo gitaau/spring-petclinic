@@ -8,7 +8,7 @@ pipeline {
         sh 'cd pipeline-2_files'
         sh 'docker-compose up -d'
       }
-      
+    }
       
   } 
 }
