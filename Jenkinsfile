@@ -22,12 +22,14 @@ pipeline {
       }
     stage ('Docker image build'){
       steps { 
-                    sh 'docker build -t gitaau/petclinic-image:latest .'
-                    withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
+                    sh 'docker build -t gitaau/petclinic-image:latest .'               
+      }
+    }
+    stage ('Push Image to DockerHub'){
+                   withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh 'docker push gitaau/petclinic-image:latest'
                     }
-      }
     }
     
     }
