@@ -1,9 +1,7 @@
 #!groovy
 
 pipeline {
-  agent {
-    label 'master'
-  }
+  agent any
   tools {
         maven 'M3'
     }
@@ -15,19 +13,12 @@ pipeline {
             post {
                 success { 
                     junit 'target/surefire-reports/**/TEST-*.xml'
+                    sh 'docker build -t gitaau/spring-petclinic:latest .'
                 }
                failure {  
                   mail bcc: '', body: "Build Failed", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "gitaau@gmail.com";
               }
             }
         }
-    stage('Docker Image Build') {
-      agent {
-         label 'master'
-      }
-      steps {
-        sh 'docker build -t gitaau/spring-petclinic:latest $WORKSPACE/.'
-      }
-    }
-  }
-}      
+    }  
+}
