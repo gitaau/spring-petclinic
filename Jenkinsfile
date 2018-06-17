@@ -22,7 +22,9 @@ pipeline {
             }
         }
     stage('Docker Image Build') {
-      agent any
+      agent {
+         label 'master'
+      }
       steps {
         sh 'docker build -t gitaau/spring-petclinic:latest $WORKSPACE/.'
       }
