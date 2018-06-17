@@ -1,4 +1,4 @@
 FROM java:8
 LABEL  maintainer="gitaau@gmail.com"
-COPY $WORKSPACE/target/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar /home/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar 
+COPY /target/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar /home/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar 
 CMD ["java","-jar","/home/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar "]
