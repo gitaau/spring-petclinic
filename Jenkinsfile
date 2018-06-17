@@ -1,7 +1,7 @@
 #!groovy
 
 pipeline {
-  agent any
+  agent node
   tools {
         maven 'M3'
     }
@@ -20,7 +20,7 @@ pipeline {
             }
         }
     stage('Docker Image Build') {
-      agent any
+      agent node
       steps {
         sh 'docker build -t gitaau/spring-petclinic:latest $WORKSPACE/.'
       }
