@@ -2,22 +2,25 @@
 
 pipeline {
   agent none
-  stages {
-    stage('Maven Install') {
-      agent {
-        docker {
-          image 'maven:3.5.0'
-        }
-      }
-      steps {
-        sh 'mvn clean install'
-      }
+  tools {
+        maven 'M3'
     }
-    stage('Docker Build') {
+  stages {
+    stage ('Application Build') {
+            steps {
+                sh 'mvn clean install'                           
+            }
+            post {
+                success { 
+                    junit 'target/surefire-reports/**/TEST-*.xml'
+                }
+            }
+        }
+    stage('Docker Image Build') {
       agent any
       steps {
         sh 'docker build -t gitaau/spring-petclinic:latest .'
       }
     }
   }
-}
+}      
