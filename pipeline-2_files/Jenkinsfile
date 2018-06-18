@@ -5,8 +5,7 @@ pipeline {
   stages {
     stage('Docker Compose') {
             steps {
-        sh 'cd pipeline-2_files && pwd'
-        sh ' docker-compose -f $WORKSPACE/pipeline-2_files/petclinic-docker-compose.yml up -d && docker-compose logs -f'
+              sh 'docker-compose -f $WORKSPACE/pipeline-2_files/petclinic-docker-compose.yml up -d && docker-compose logs -f'
       }
     }
       
