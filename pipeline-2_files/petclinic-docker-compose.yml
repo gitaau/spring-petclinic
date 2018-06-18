@@ -9,7 +9,7 @@ services:
        MYSQL_ROOT_PASSWORD: petclinic
        MYSQL_DATABASE: petclinic
      command:
-      - /bin/bash  echo 1
+      - /bin/bash  -c "echo 1"
      container_name: db
    app1:
      depends_on:
