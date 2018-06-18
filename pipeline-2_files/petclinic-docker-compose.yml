@@ -4,14 +4,13 @@ services:
    db:
      image: mysql:5.7.8
      volumes:
-       - $PWD/src/main/resources/db/mysql/schema.sql:/home/mysql/aschema.sql
-       - $PWD/src/main/resources/db/mysql/data.sql:/home/mysql/bdata.sql
+       - $PWD/src/main/resources/db/mysql:/home/mysql/
+       - $PWD/pipeline2_files/init.sql:/home/mysql/init.sql
      environment:
        MYSQL_ROOT_PASSWORD: petclinic
        MYSQL_DATABASE: petclinic
      command:
-       --init-file /home/mysql/aschema.sql
-       --init-file /home/mysql/bdata.sql
+       --init-file /home/mysql/init.sql
      container_name: db
    app1:
      depends_on:
