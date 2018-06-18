@@ -5,8 +5,7 @@ services:
      image: mysql:5.7.8
      volumes:
      - ./src/main/resources/db/mysql:/home/mysql
-     restart: always
-     environment:
+    environment:
        MYSQL_ROOT_PASSWORD: petclinic
        MYSQL_DATABASE: petclinic
      command: 
