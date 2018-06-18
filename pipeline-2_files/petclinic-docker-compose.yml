@@ -4,12 +4,10 @@ services:
    db:
      image: mysql:5.7.8
      volumes:
-        - $PWD/pipeline2_files/init.sql:/home/mysql/init.sql
+        - $PWD/pipeline2_files/init.sql:/docker-entrypoint-initdb.d
      environment:
        MYSQL_ROOT_PASSWORD: petclinic
        MYSQL_DATABASE: petclinic
-     command:
-       --init-file /home/mysql/init.sql
      container_name: db
    app1:
      depends_on:
